@@ -64,18 +64,30 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // Check if user has a specific permission
   const hasPermission = (permission: string): boolean => {
     if (!user || !user.permissions) return false;
+    
+    // Admin role has all permissions
+    if (user.role === 'admin') return true;
+    
     return user.permissions.includes(permission);
   };
 
   // Check if user has any of the specified permissions
   const hasAnyPermission = (permissions: string[]): boolean => {
     if (!user || !user.permissions) return false;
+    
+    // Admin role has all permissions
+    if (user.role === 'admin') return true;
+    
     return permissions.some(permission => user.permissions.includes(permission));
   };
 
   // Check if user has all of the specified permissions
   const hasAllPermissions = (permissions: string[]): boolean => {
     if (!user || !user.permissions) return false;
+    
+    // Admin role has all permissions
+    if (user.role === 'admin') return true;
+    
     return permissions.every(permission => user.permissions.includes(permission));
   };
 

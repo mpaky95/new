@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import { ShieldAlert } from 'lucide-react';
 
 interface PermissionGuardProps {
   permission: string | string[];
@@ -18,7 +19,19 @@ interface PermissionGuardProps {
  */
 const PermissionGuard: React.FC<PermissionGuardProps> = ({ 
   permission, 
-  fallback = null, 
+  fallback = (
+    <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
+      <div className="flex items-start">
+        <ShieldAlert className="h-5 w-5 text-yellow-500 mr-2 mt-0.5" />
+        <div>
+          <h3 className="text-sm font-medium text-yellow-800">Permission Required</h3>
+          <p className="text-sm text-yellow-700 mt-1">
+            You don't have the necessary permissions to access this feature.
+          </p>
+        </div>
+      </div>
+    </div>
+  ), 
   children,
   requireAll = false
 }) => {
