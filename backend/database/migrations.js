@@ -22,6 +22,8 @@ import { removeUsersRoleConstraint } from './migrations/remove-users-role-constr
 import { addUserSpecificPermissionsTable } from './migrations/add-user-specific-permissions-table.js';
 import { createCabinetTables } from './migrations/create-cabinet-tables.js';
 import { updateItemTypeForCabinets } from './migrations/update-item-type-for-cabinets.js';
+import { addThicknessToInventory } from './migrations/add-thickness-to-inventory.js';
+import { createCabinetPartsTables } from './migrations/create-cabinet-parts-tables.js';
 
 const migrations = [
   {
@@ -128,6 +130,16 @@ const migrations = [
     version: 24,
     name: 'update_item_type_for_cabinets',
     execute: updateItemTypeForCabinets
+  },
+  {
+    version: 25,
+    name: 'add_thickness_to_inventory',
+    execute: addThicknessToInventory
+  },
+  {
+    version: 26,
+    name: 'create_cabinet_parts_tables',
+    execute: createCabinetPartsTables
   }
 ];
 
