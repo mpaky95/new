@@ -26,10 +26,10 @@ export const useUnitSystem = () => {
 };
 
 export const UnitSystemProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // Get the saved preference or default to imperial
+  // Get the saved preference or default to metric
   const [unitSystem, setUnitSystemState] = useState<UnitSystem>(() => {
     const saved = localStorage.getItem('unitSystem');
-    return (saved as UnitSystem) || 'imperial';
+    return (saved as UnitSystem) || 'metric';
   });
 
   // Save preference to localStorage when it changes

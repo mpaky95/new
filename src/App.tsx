@@ -16,6 +16,7 @@ import CabinetAdmin from './components/Cabinets/CabinetAdmin';
 import CabinetCart from './components/Cabinets/CabinetCart';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { SocketProvider } from './contexts/SocketContext';
+import { UnitSystemProvider } from './contexts/UnitSystemContext';
 
 function AppContent() {
   const { user, loading } = useAuth();
@@ -34,26 +35,28 @@ function AppContent() {
 
   return (
     <SocketProvider>
-      <Router>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/inventory" element={<Inventory />} />
-            <Route path="/requisitions" element={<Requisitions />} />
-            <Route path="/purchase-orders" element={<PurchaseOrders />} />
-            <Route path="/production" element={<Production />} />
-            <Route path="/master-data" element={<MasterDataManagement />} />
-            <Route path="/users" element={<UserManagement />} />
-            <Route path="/reports" element={<ReportDashboard />} />
-            <Route path="/settings" element={<SettingsPage />} />
-            <Route path="/cabinets" element={<CabinetCatalog />} />
-            <Route path="/cabinets/admin" element={<CabinetAdmin />} />
-            <Route path="/cabinets/cart" element={<CabinetCart />} />
-            <Route path="*" element={<Navigate to="/dashboard" replace />} />
-          </Routes>
-        </Layout>
-      </Router>
+      <UnitSystemProvider>
+        <Router>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Navigate to="/dashboard" replace />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/inventory" element={<Inventory />} />
+              <Route path="/requisitions" element={<Requisitions />} />
+              <Route path="/purchase-orders" element={<PurchaseOrders />} />
+              <Route path="/production" element={<Production />} />
+              <Route path="/master-data" element={<MasterDataManagement />} />
+              <Route path="/users" element={<UserManagement />} />
+              <Route path="/reports" element={<ReportDashboard />} />
+              <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/cabinets" element={<CabinetCatalog />} />
+              <Route path="/cabinets/admin" element={<CabinetAdmin />} />
+              <Route path="/cabinets/cart" element={<CabinetCart />} />
+              <Route path="*" element={<Navigate to="/dashboard" replace />} />
+            </Routes>
+          </Layout>
+        </Router>
+      </UnitSystemProvider>
     </SocketProvider>
   );
 }
