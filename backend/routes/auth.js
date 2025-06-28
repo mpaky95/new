@@ -224,6 +224,17 @@ router.get('/verify', async (req, res) => {
     });
   } catch (error) {
     console.error('Token verification error:', error);
+    
+    // Handle specific JWT errors
+    if (error.name === 'TokenExpiredError') {
+      return res.status(401).json({ error: 'Token expired' });
+    } else if (error.name === 'JsonWebTokenError') {
+      return res.status(401).json({ error: 'Invalid token' });
+    } else if (error.name === 'NotBeforeError') {
+      return res.status(401).json({ error: 'Token not active' });
+    }
+    
+    // For any other errors, return generic invalid token message
     res.status(401).json({ error: 'Invalid token' });
   }
 });
